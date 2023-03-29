@@ -12,11 +12,13 @@ function App() {
         setInputValue(value);
     };
 
-    const onAddBtnClick = () => {
+    const handleFormSubmit = (e) => {
+        e?.preventDefault?.();
+
         const newList = [...list, inputValue];
 
         setList(newList);
-        console.log(newList);
+        setInputValue('');
     };
 
     const deleteListItem = (todoIndex) => {
@@ -30,15 +32,17 @@ function App() {
                 <h3>YapılacaklarListesi</h3>
 
                 <div className="add-todo-input-container">
-                    <input
-                        className="text-input"
-                        placeholder="Bugün neler yapıyoruz :)"
-                        onChange={onInputValueChange}
-                    />
+                    <form onSubmit={handleFormSubmit}>
+                        <input
+                            className="text-input"
+                            placeholder="Bugün neler yapıyoruz :)"
+                            onChange={onInputValueChange}
+                        />
 
-                    <button className="add-btn" onClick={onAddBtnClick}>
-                        Ekle
-                    </button>
+                        <button className="add-btn" type="submit">
+                            Ekle
+                        </button>
+                    </form>
                 </div>
 
                 {list.length > 0 ? (
