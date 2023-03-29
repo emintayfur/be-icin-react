@@ -175,6 +175,7 @@ function App() {
                                         onClick={() => {
                                             deleteListItem(todoIndex);
                                         }}
+                                        disabled={isLoading}
                                     >
                                         <span>Sil</span>
                                     </button>
