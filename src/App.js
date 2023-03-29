@@ -31,8 +31,7 @@ function App() {
             <div className="todo-box">
                 <h3>YapılacaklarListesi</h3>
 
-                <div className="add-todo-input-container">
-                    <form onSubmit={handleFormSubmit}>
+                <form className="add-todo-input-container" onSubmit={handleFormSubmit}>
                         <input
                             className="text-input"
                             placeholder="Bugün neler yapıyoruz :)"
@@ -42,8 +41,7 @@ function App() {
                         <button className="add-btn" type="submit">
                             Ekle
                         </button>
-                    </form>
-                </div>
+                </form>
 
                 {list.length > 0 ? (
                     <ul className="todo-s">
