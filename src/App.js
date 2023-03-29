@@ -1,7 +1,21 @@
+// App.js
+
 import "./App.css";
 import React from "react";
 
 function App() {
+    const [inputValue, setInputValue] = React.useState('');
+    const [list, setList] = React.useState([]);
+
+    const onInputValueChange = (event) => {
+        const value = event.target.value;
+        setInputValue(value);
+    }
+
+    const onAddBtnClick = () => {
+        alert(inputValue);
+    }
+
     return (
         <main className="container">
             <div className="todo-box">
@@ -11,38 +25,21 @@ function App() {
                     <input
                         className="text-input"
                         placeholder="Bugün neler yapıyoruz :)"
+                        onChange={onInputValueChange}
                     />
 
-                    <button className="add-btn">
+                    <button className="add-btn" onClick={onAddBtnClick}>
                         Ekle
                     </button>
                 </div>
 
                 <ul className="todo-s">
-                   <li className="todo">
-                       <div>
-                           <span>Perşembe günü 12.00'deki eğitime katıl.</span>
-                       </div>
-
-                       <div className="todo-actions">
-                           <button className="todo-btn done">
-                               <span>Tamam</span>
-                           </button>
-                           <button className="todo-btn remove">
-                               <span>Sil</span>
-                           </button>
-                       </div>
-                   </li>
-
                     <li className="todo">
-                        <div className="ok">
-                            <span>Eğitim için makale yaz.</span>
+                        <div>
+                            <span>Perşembe günü 12.00'deki eğitime katıl.</span>
                         </div>
 
                         <div className="todo-actions">
-                            <button className="todo-btn done">
-                                <span>Tamam</span>
-                            </button>
                             <button className="todo-btn remove">
                                 <span>Sil</span>
                             </button>

@@ -117,25 +117,10 @@ div.todo-box {
 }
 
 /***/
-.todo-btn.done {
-  background-color: #4CAF50;
-  color: white;
-}
-.todo-btn.done:hover {
-  background-color: #388E3C;
-}
-
-/***/
 .todo-btn.remove {
   background-color: #EF5350;
   color: white;
 }
 .todo-btn.remove:hover {
   background-color: #D32F2F;
-}
-
-/***/
-.ok > span {
-  text-decoration: line-through;
-  opacity: .5;
 }
