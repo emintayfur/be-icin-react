@@ -1,38 +1,141 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/***/
+main.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+div.todo-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 40vw;
+  min-width: 350px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #eaeaea;
+}
+
+.add-todo-input-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/***/
+.add-btn {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  cursor: pointer;
+  min-width: 80px;
+  height: 50px;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #2196F3;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  transition: .3s ease-in-out background-color;
+}
+.add-btn:hover{
+  background-color: #1D81D1;
+}
+
+/***/
+.text-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #eaeaea;
+}
+
+/***/
+.todo-s {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  list-style-type: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #eaeaea;
+  box-sizing: border-box;
+}
+
+/***/
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 0.75rem;
+}
+.todo:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/***/
+.todo-actions {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+/***/
+.todo-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: white;
+  background-color: #1D81D1;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.50rem 0.85rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: .3s ease-in background-color;
+}
+
+/***/
+.todo-btn.done {
+  background-color: #4CAF50;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.todo-btn.done:hover {
+  background-color: #388E3C;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/***/
+.todo-btn.remove {
+  background-color: #EF5350;
+  color: white;
+}
+.todo-btn.remove:hover {
+  background-color: #D32F2F;
+}
+
+/***/
+.ok > span {
+  text-decoration: line-through;
+  opacity: .5;
 }
