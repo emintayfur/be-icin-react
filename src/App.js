@@ -19,15 +19,68 @@ function App() {
 
         const newList = [...list, inputValue];
 
-        setList(newList);
-        setInputValue("");
+        // talebi göndermeden önce loading'i true yapalım.
+        setIsLoading(true);
+
+        const requestPayload = { str: inputValue };
+        fetch("http://localhost:3001/todo", {
+            method: "POST", //
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestPayload), // payload'ı obje olarak gönderemeyiz bu yüzden bunu string'e çevirmemiz gerekiyor.
+        })
+            .then((res) => res.json())
+            .then((responseData) => {
+                if (responseData?.status) {
+                    // eğer işlemler tamamlandıysa ve body içerisindeki status field'ının değeri true'ysa
+                    setList(newList);
+                    setInputValue("");
+                } else {
+                    // Bu ve bunun gibi hatalar uygulamanın kullanımını etkilemeyeceği için
+                    // uygulamayı tamamen kullanıma kapatıp hatayı göstermek yerine hata,
+                    // popup içerisinde kullanıcıya gösterilir
+                    alert(responseData.message);
+                }
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+            });
     };
 
     const deleteListItem = (todoIndex) => {
         const newList = list.filter(
             (listItem, listItemIdx) => listItemIdx !== todoIndex
         );
-        setList(newList);
+
+        // talebi göndermeden önce loading'i true yapalım.
+        setIsLoading(true);
+
+        const requestPayload = { index: todoIndex };
+        fetch("http://localhost:3001/todo", {
+            method: "DELETE", //
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(requestPayload), // payload'ı obje olarak gönderemeyiz bu yüzden bunu string'e çevirmemiz gerekiyor.
+        })
+            .then((res) => res.json())
+            .then((responseData) => {
+                if (responseData?.status) {
+                    // eğer işlemler tamamlandıysa ve body içerisindeki status field'ının değeri true'ysa
+                    setList(newList);
+                } else {
+                    // Bu ve bunun gibi hatalar uygulamanın kullanımını etkilemeyeceği için
+                    // uygulamayı tamamen kullanıma kapatıp hatayı göstermek yerine hata,
+                    // popup içerisinde kullanıcıya gösterilir
+                    alert(responseData.message);
+                }
+            })
+            .finally(() => {
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                setError(err.message);
+            });
     };
 
     React.useEffect(function () {
@@ -95,10 +148,15 @@ function App() {
                         className="text-input"
                         placeholder="Bugün neler yapıyoruz :)"
                         onChange={onInputValueChange}
+                        value={inputValue}
                         disabled={isLoading}
                     />
 
-                    <button className="add-btn" type="submit" disabled={isLoading}>
+                    <button
+                        className="add-btn"
+                        type="submit"
+                        disabled={isLoading || !inputValue?.length}
+                    >
                         Ekle
                     </button>
                 </form>

@@ -92,6 +92,13 @@ div.todo-box {
   border-bottom: 1px solid #eaeaea;
   padding-bottom: 0.75rem;
 }
+.todo > div {
+  max-width: 85%;
+}
+.todo > div > span {
+  display: block;
+  word-wrap: break-word;
+}
 .todo:last-child {
   border-bottom: none;
   padding-bottom: 0;
