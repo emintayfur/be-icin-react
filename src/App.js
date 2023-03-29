@@ -13,7 +13,13 @@ function App() {
     }
 
     const onAddBtnClick = () => {
-        alert(inputValue);
+        const newList = [
+            ...list,
+            inputValue,
+        ];
+
+        setList(newList)
+        console.log(newList);
     }
 
     return (
