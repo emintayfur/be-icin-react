@@ -19,6 +19,11 @@ function App() {
         console.log(newList);
     };
 
+    const deleteListItem = (todoIndex) => {
+        const newList = list.filter((listItem, listItemIdx) => listItemIdx !== todoIndex);
+        setList(newList);
+    }
+
     return (
         <main className="container">
             <div className="todo-box">
@@ -45,7 +50,12 @@ function App() {
                                 </div>
 
                                 <div className="todo-actions">
-                                    <button className="todo-btn remove">
+                                    <button
+                                        className="todo-btn remove"
+                                        onClick={() => {
+                                            deleteListItem(todoIndex)
+                                        }}
+                                    >
                                         <span>Sil</span>
                                     </button>
                                 </div>
